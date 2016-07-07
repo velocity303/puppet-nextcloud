@@ -15,14 +15,13 @@ class nextcloud (
   $import_db      = false,
 ) {
   include nextcloud::install
-  $autoconfig = template('nextcloud/autoconfig.php.erb')
-  exec { 'setup-autoconfig':
-     command => "echo \'${autoconfig}\' > ${docroot}/nextcloud/config/config.php",
-     user    => 'apache',
-     onlyif  => "test ! -f ${docroot}/nextcloud/config/config.php",
-     path    => ['/bin','/sbin','usr/local/bin','/usr/local/sbin','/usr/bin'],
-     require => Class['nextcloud::install'],
-     notify  => Service['httpd'],
-   }
-
+  $config = template('nextcloud/config.php.erb')
+  exec { 'setup-config':
+    command => "echo \'${config}\' > ${docroot}/nextcloud/config/config.php",
+    user    => 'apache',
+    onlyif  => "test ! -f ${docroot}/nextcloud/config/config.php",
+    path    => ['/bin','/sbin','usr/local/bin','/usr/local/sbin','/usr/bin'],
+    require => Class['nextcloud::install'],
+    notify  => Service['httpd'],
+  }
 }
