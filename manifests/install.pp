@@ -41,6 +41,7 @@ class nextcloud::install {
   staging::deploy { $::nextcloud::install_file:
     source  => $::nextcloud::install_url,
     target  => $::nextcloud::docroot,
+    creates => "${::nextcloud::docroot}/nextcloud",
     require => Class['apache'],
   }->
   file{ "${::nextcloud::docroot}/nextcloud":
