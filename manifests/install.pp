@@ -15,14 +15,14 @@ class nextcloud::install {
         password       => $::nextcloud::dbpass,
         sql            => $::nextcloud::db_backup_path,
         import_timeout => 900,
-        grant          => ['SELECT', 'UPDATE'],
+        grant          => ['ALL'],
       }
     }
     else {
        mysql::db { $::nextcloud::dbname:
          user     => $::nextcloud::dbuser,
          password => $::nextcloud::dbpass,
-         grant    => ['SELECT', 'UPDATE'],
+         grant    => ['ALL'],
       }
     }
   }
