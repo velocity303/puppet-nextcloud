@@ -13,7 +13,6 @@ class nextcloud::install {
       mysql::db { $::nextcloud::dbhost:
         user     => $::nextcloud::dbuser,
         password => $::nextcloud::dbpass,
-        host     => $::nextcloud::dbhost,
         grant    => ['SELECT', 'UPDATE'],
       }
     }
@@ -21,7 +20,6 @@ class nextcloud::install {
        mysql::db { $::nextcloud::dbhost:
          user     => $::nextcloud::dbuser,
          password => $::nextcloud::dbpass,
-         host     => $::nextcloud::dbhost,
          grant    => ['SELECT', 'UPDATE'],
       }
     }
