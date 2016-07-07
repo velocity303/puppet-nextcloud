@@ -42,5 +42,8 @@ class nextcloud::install {
     source => $::nextcloud::install_url,
     target => $::nextcloud::docroot,
     require => Class['apache'],
+  }->
+  file{ "${::nextcloud::docroot}/nextcloud":
+    owner => apache,
   }
 }
