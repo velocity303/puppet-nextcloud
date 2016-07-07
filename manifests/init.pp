@@ -17,7 +17,7 @@ class nextcloud (
   include nextcloud::install
   $autoconfig = template('nextcloud/autoconfig.php.erb')
   exec { 'setup-autoconfig':
-     command => "echo \'${autoconfig}\' > ${docroot}/nextcloud/config/autoconfig.php",
+     command => "echo \'${autoconfig}\' > ${docroot}/nextcloud/config/config.php",
      user    => 'apache',
      onlyif  => "test ! -f ${docroot}/nextcloud/config/config.php",
      path    => ['/bin','/sbin','usr/local/bin','/usr/local/sbin','/usr/bin'],
