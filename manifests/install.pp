@@ -10,7 +10,7 @@ class nextcloud::install {
       remove_default_accounts => true,
     }
     if $::nextcloud::import_db {
-      mysql::db { $::nextcloud::dbhost:
+      mysql::db { $::nextcloud::dbname:
         user           => $::nextcloud::dbuser,
         password       => $::nextcloud::dbpass,
         sql            => $::nextcloud::db_backup_path,
@@ -19,7 +19,7 @@ class nextcloud::install {
       }
     }
     else {
-       mysql::db { $::nextcloud::dbhost:
+       mysql::db { $::nextcloud::dbname:
          user     => $::nextcloud::dbuser,
          password => $::nextcloud::dbpass,
          grant    => ['SELECT', 'UPDATE'],
