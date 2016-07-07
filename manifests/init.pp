@@ -8,7 +8,7 @@ class nextcloud (
   $install_file   = 'nextcloud-9.0.52.tar.bz2',
   $install_url    = "https://download.nextcloud.com/server/releases/${install_file}",
   $fresh_install  = true,
-  $db_backup_path = '/var/tmp/dbbackup_file',
+  $db_backup_path = '/vagrant/nextcloud.sql',
   $manage_db      = true,
   $manage_apache  = true,
   $docroot        = '/var/www/html',
