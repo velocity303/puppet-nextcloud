@@ -18,15 +18,15 @@ class nextcloud::install {
         grant          => ['ALL'],
       }
       file { "${::nextcloud::docroot}/nextcloud/data":
-        ensure => directory,
-        owner  => 'apache',
-        group  => 'apache',
+        ensure  => directory,
+        owner   => 'apache',
+        group   => 'apache',
+        require => File["${::nextcloud::docroot}/nextcloud"],
       }->
       file { "${::nextcloud::docroot}/nextcloud/data/.ocdata":
         ensure  => file,
         owner   => 'apache',
         group   => 'apache',
-        require => Service['httpd'],
       }
     }
     else {
