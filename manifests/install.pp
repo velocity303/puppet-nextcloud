@@ -11,9 +11,11 @@ class nextcloud::install {
     }
     if $::nextcloud::import_db {
       mysql::db { $::nextcloud::dbhost:
-        user     => $::nextcloud::dbuser,
-        password => $::nextcloud::dbpass,
-        grant    => ['SELECT', 'UPDATE'],
+        user           => $::nextcloud::dbuser,
+        password       => $::nextcloud::dbpass,
+        sql            => $::nextcloud::db_backup_path,
+        import_timeout => 900,
+        grant          => ['SELECT', 'UPDATE'],
       }
     }
     else {
