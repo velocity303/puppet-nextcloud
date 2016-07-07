@@ -39,11 +39,13 @@ class nextcloud::install {
     }
   }
   staging::deploy { $::nextcloud::install_file:
-    source => $::nextcloud::install_url,
-    target => $::nextcloud::docroot,
+    source  => $::nextcloud::install_url,
+    target  => $::nextcloud::docroot,
+    user    => 'apache',
     require => Class['apache'],
   }->
   file{ "${::nextcloud::docroot}/nextcloud":
-    owner => apache,
+    owner => 'apache',
+    group => 'apache',
   }
 }
