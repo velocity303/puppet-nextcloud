@@ -17,6 +17,17 @@ class nextcloud::install {
         import_timeout => 900,
         grant          => ['ALL'],
       }
+      file { "${::nextcloud::docroot}/nextcloud/data":
+        ensure => directory,
+        owner  => 'apache',
+        group  => 'apache',
+      }->
+      file { "${::nextcloud::docroot}/nextcloud/data/.ocdata":
+        ensure  => file,
+        owner   => 'apache',
+        group   => 'apache',
+        require => Service['httpd'],
+      }
     }
     else {
        mysql::db { $::nextcloud::dbname:
